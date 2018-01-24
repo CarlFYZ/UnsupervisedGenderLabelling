@@ -166,10 +166,10 @@ def feature_processing(array2d):
     new_array2d[:, 2] = array2d[:, 6] / array2d[:, 4]
     # voucher / orders
     new_array2d[:, 3] = array2d[:, 10] / array2d[:, 3]
-    # female_items / items
-    new_array2d[:, 4] = array2d[:, 15] / array2d[:, 4]
-    # male_items / items
-    new_array2d[:, 5] = array2d[:, 16] / array2d[:, 4]
+    # female_items / female_items + male_items
+    new_array2d[:, 4] = array2d[:, 15] / ([1 if x == 0 else x for x in (array2d[:, 15] + array2d[:, 16])])
+    # male_items / female_items + male_items
+    new_array2d[:, 5] = array2d[:, 16] / ([1 if x == 0 else x for x in (array2d[:, 15] + array2d[:, 16])])
     # unisex_items / items
     new_array2d[:, 6] = array2d[:, 17] / array2d[:, 4]
     # wapp_items / items
@@ -234,24 +234,22 @@ def feature_selection_classifier_1(array2d):
     :return: the selected feature
     """
     newArray2d = np.zeros([array2d.shape[0], 10])
-    # female_items / items
-    newArray2d[:, 0] = array2d[:, 4]
-    # male_items / items
-    newArray2d[:, 1] = array2d[:, 5]
+    # male_items / female_items + male_items
+    newArray2d[:, 0] = array2d[:, 5]
     # wapp_items / items
-    newArray2d[:, 2] = array2d[:, 7]
+    newArray2d[:, 1] = array2d[:, 7]
     # wftw_items / items
-    newArray2d[:, 3] = array2d[:, 8]
+    newArray2d[:, 2] = array2d[:, 8]
     # mapp_items / items
-    newArray2d[:, 4] = array2d[:, 9]
+    newArray2d[:, 3] = array2d[:, 9]
     # wacc_items / items
-    newArray2d[:, 5] = array2d[:, 10]
+    newArray2d[:, 4] = array2d[:, 10]
     # macc_items / items
-    newArray2d[:, 6] = array2d[:, 11]
+    newArray2d[:, 5] = array2d[:, 11]
     # mftw_items / items
-    newArray2d[:, 7] = array2d[:, 12]
-    # # curvy_items / items
-    # newArray2d[:, 8] = array2d[:, 15]
+    newArray2d[:, 6] = array2d[:, 12]
+    # curvy_items / items
+    newArray2d[:, 7] = array2d[:, 15]
     # average_discount_onoffer / orders
     newArray2d[:, 8] = array2d[:, 26]
     # average_discount_used / orders
@@ -270,7 +268,7 @@ def feature_selection_classifier_2(array2d):
     :param array2d: data with all features
     :return: the selected feature
     """
-    newArray2d = np.zeros([array2d.shape[0], 17])
+    newArray2d = np.zeros([array2d.shape[0], 16])
     # items/ orders
     newArray2d[:, 0] = array2d[:, 0]
     # cancels / orders
@@ -279,32 +277,32 @@ def feature_selection_classifier_2(array2d):
     newArray2d[:, 2] = array2d[:, 2]
     # voucher / orders
     newArray2d[:, 3] = array2d[:, 3]
-    # female_items / items
-    newArray2d[:, 4] = array2d[:, 4]
-    # male_items / items
-    newArray2d[:, 5] = array2d[:, 5]
+    # female_items / female_items + male_items
+    # newArray2d[:, 4] = array2d[:, 4]
+    # male_items / female_items + male_items
+    newArray2d[:, 4] = array2d[:, 5]
     # wapp_items / items
-    newArray2d[:, 6] = array2d[:, 7]
+    newArray2d[:, 5] = array2d[:, 7]
     # wftw_items / items
-    newArray2d[:, 7] = array2d[:, 8]
+    newArray2d[:, 6] = array2d[:, 8]
     # mapp_items / items
-    newArray2d[:, 8] = array2d[:, 9]
+    newArray2d[:, 7] = array2d[:, 9]
     # wacc_items / items
-    newArray2d[:, 9] = array2d[:, 10]
+    newArray2d[:, 8] = array2d[:, 10]
     # macc_items / items
-    newArray2d[:, 10] = array2d[:, 11]
+    newArray2d[:, 9] = array2d[:, 11]
     # mftw_items / items
-    newArray2d[:, 11] = array2d[:, 12]
+    newArray2d[:, 10] = array2d[:, 12]
     # mspt_items / items
-    newArray2d[:, 12] = array2d[:, 14]
+    newArray2d[:, 11] = array2d[:, 14]
     # curvy_items / items
-    newArray2d[:, 13] = array2d[:, 15]
+    newArray2d[:, 12] = array2d[:, 15]
     # average_discount_onoffer / orders
-    newArray2d[:, 14] = array2d[:, 26]
+    newArray2d[:, 13] = array2d[:, 26]
     # average_discount_used / orders
-    newArray2d[:, 15] = array2d[:, 27]
+    newArray2d[:, 14] = array2d[:, 27]
     # revenue / order
-    newArray2d[:, 16] = array2d[:, 28]
+    newArray2d[:, 15] = array2d[:, 28]
     return newArray2d
 
 
@@ -319,9 +317,9 @@ def feature_selection_classifier_3(array2d):
     :return: the selected feature
     """
     newArray2d = np.zeros([array2d.shape[0], 18])
-    # female_items / items
+    # female_items / female_items + male_items
     newArray2d[:, 0] = array2d[:, 4]
-    # male_items / items
+    # male_items / female_items + male_items
     newArray2d[:, 1] = array2d[:, 5]
     # wapp_items / items
     newArray2d[:, 2] = array2d[:, 7]

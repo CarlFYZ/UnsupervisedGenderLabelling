@@ -15,7 +15,7 @@ from genderclassifierfunctions import concatenate_result
 from sklearn.decomposition import PCA
 import genderclassifierfunctions
 
-unzipfile('test_data.zip', 'welcometotheiconic')
+# unzipfile('test_data.zip', 'welcometotheiconic')
 
 # Also removed duplication
 keys, datalist = loadjsonfiletolist('data.json')
@@ -36,20 +36,20 @@ result_2_kmeans = kmeans_classification(2, featureClassifier2)
 
 # Classifier 3 - Mini Batch K means with PCA on all features
 featureClassifier3 = feature_selection_classifier_3(allfeatures)
-pcaResult = PCA(n_components=6).fit(featureClassifier3).transform(featureClassifier3)
+pcaResult = PCA(n_components=7).fit(featureClassifier3).transform(featureClassifier3)
 result_3_mbk = minibatchkmeans_classifier(2, featureClassifier3)
 
 # Unsupervised ensemble learning, final label needs to get at least 2 votes from 3 classifiers
 # female = 0, male = 1
 final_result = (result_1_kmeans + result_1_kmeans + result_3_mbk)
 final_result = [1 if row > 1 else 0 for row in final_result]
-
-print("First 30 final results female = 0")
+print("Total male:", sum(final_result))
+print("First 30 final results female label = 0/ male label =1")
 print(*final_result[:30])
 
 # Print result to CSV file for easy read
 resultkeys, resultdata = concatenate_result(keys, datalist, "gender(female=0)", final_result)
-writecsvfile('GenderLabelingFinal.csv', resultkeys, resultdata)
+writecsvfile('GenderLabellingFinal.csv', resultkeys, resultdata)
 
 # Plot final result in 2D with first 2 components
 plot2d(pcaResult, final_result, 0, 1)

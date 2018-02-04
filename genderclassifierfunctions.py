@@ -211,9 +211,9 @@ def feature_processing(array2d):
     new_array2d[:, 24] = array2d[:, 35] / array2d[:, 3]
     # other_collection_orders / orders
     new_array2d[:, 25] = array2d[:, 36] / array2d[:, 3]
-    # average_discount_onoffer / orders
+    # average_discount_onoffer
     new_array2d[:, 26] = array2d[:, 39]
-    # average_discount_used / orders
+    # average_discount_used
     new_array2d[:, 27] = array2d[:, 40]
     # revenue / order
     new_array2d[:, 28] = array2d[:, 41] / array2d[:, 3]
@@ -250,9 +250,9 @@ def feature_selection_classifier_1(array2d):
     newArray2d[:, 6] = array2d[:, 12]
     # curvy_items / items
     newArray2d[:, 7] = array2d[:, 15]
-    # average_discount_onoffer / orders
+    # average_discount_onoffer
     newArray2d[:, 8] = array2d[:, 26]
-    # average_discount_used / orders
+    # average_discount_used
     newArray2d[:, 9] = array2d[:, 27]
 
     return newArray2d
@@ -297,9 +297,9 @@ def feature_selection_classifier_2(array2d):
     newArray2d[:, 11] = array2d[:, 14]
     # curvy_items / items
     newArray2d[:, 12] = array2d[:, 15]
-    # average_discount_onoffer / orders
+    # average_discount_onoffer
     newArray2d[:, 13] = array2d[:, 26]
-    # average_discount_used / orders
+    # average_discount_used
     newArray2d[:, 14] = array2d[:, 27]
     # revenue / order
     newArray2d[:, 15] = array2d[:, 28]
@@ -349,9 +349,9 @@ def feature_selection_classifier_3(array2d):
     newArray2d[:, 14] = array2d[:, 23]
     # other_collection_orders / orders
     newArray2d[:, 15] = array2d[:, 25]
-    # average_discount_onoffer / orders
+    # average_discount_onoffer
     newArray2d[:, 16] = array2d[:, 26]
-    # average_discount_used / orders
+    # average_discount_used
     newArray2d[:, 17] = array2d[:, 27]
     return newArray2d
 
